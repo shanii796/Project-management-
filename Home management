@@ -1,0 +1,353 @@
+import java.util.Scanner;
+
+class LivingRoom {
+    private boolean tvOn;
+    private boolean lightsOn;
+    private boolean acOn;
+    private boolean heaterOn;
+
+    public LivingRoom() {
+        tvOn = false;
+        lightsOn = false;
+        acOn = false;
+        heaterOn = false;
+    }
+
+    public void turnOnTV() {
+        tvOn = true;
+        System.out.println("TV is now on.");
+    }
+
+    public void turnOffTV() {
+        tvOn = false;
+        System.out.println("TV is now off.");
+    }
+
+    public void turnOnLights() {
+        lightsOn = true;
+        System.out.println("Lights are now on.");
+    }
+
+    public void turnOffLights() {
+        lightsOn = false;
+        System.out.println("Lights are now off.");
+    }
+
+    public void turnOnAC() {
+        acOn = true;
+        System.out.println("AC is now on.");
+    }
+
+    public void turnOffAC() {
+        acOn = false;
+        System.out.println("AC is now off.");
+    }
+
+    public void turnOnHeater() {
+        heaterOn = true;
+        System.out.println("Heater is now on.");
+    }
+
+    public void turnOffHeater() {
+        heaterOn = false;
+        System.out.println("Heater is now off.");
+    }
+
+    public boolean isTVOn() {
+        return tvOn;
+    }
+
+    public boolean areLightsOn() {
+        return lightsOn;
+    }
+
+    public boolean isACOn() {
+        return acOn;
+    }
+
+    public boolean isHeaterOn() {
+        return heaterOn;
+    }
+
+    public void displayStatus() {
+        System.out.println("Living Room status:");
+        System.out.println("TV is " + (tvOn ? "on" : "off"));
+        System.out.println("Lights are " + (lightsOn ? "on" : "off"));
+        System.out.println("AC is " + (acOn ? "on" : "off"));
+        System.out.println("Heater is " + (heaterOn ? "on" : "off"));
+    }
+}
+
+class Kitchen {
+    private boolean stoveOn;
+    private boolean lightsOn;
+
+    public Kitchen() {
+        stoveOn = false;
+        lightsOn = false;
+    }
+
+    public void turnOnStove() {
+        stoveOn = true;
+        System.out.println("Stove is now on.");
+    }
+
+    public void turnOffStove() {
+        stoveOn = false;
+        System.out.println("Stove is now off.");
+    }
+
+    public void turnOnLights() {
+        lightsOn = true;
+        System.out.println("Kitchen lights are now on.");
+    }
+
+    public void turnOffLights() {
+        lightsOn = false;
+        System.out.println("Kitchen lights are now off.");
+    }
+
+    public boolean isStoveOn() {
+        return stoveOn;
+    }
+
+    public boolean areLightsOn() {
+        return lightsOn;
+    }
+
+    public void displayStatus() {
+        System.out.println("Kitchen status:");
+        System.out.println("Stove is " + (stoveOn ? "on" : "off"));
+        System.out.println("Lights are " + (lightsOn ? "on" : "off"));
+    }
+
+    public void cook() {
+        if (stoveOn) {
+            System.out.println("Cooking in progress...");
+        } else {
+            System.out.println("Turn on the stove first.");
+        }
+    }
+
+    public void clean() {
+        System.out.println("Cleaning the kitchen...");
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Kitchen is clean now.");
+    }
+}
+
+class Bedroom {
+    private boolean lightsOn;
+    private boolean fanOn;
+
+    public Bedroom() {
+        lightsOn = false;
+        fanOn = false;
+    }
+
+    public void turnOnLights() {
+        lightsOn = true;
+        System.out.println("Bedroom lights are now on.");
+    }
+
+    public void turnOffLights() {
+        lightsOn = false;
+        System.out.println("Bedroom lights are now off.");
+    }
+
+    public void turnOnFan() {
+        fanOn = true;
+        System.out.println("Fan is now on.");
+    }
+
+    public void turnOffFan() {
+        fanOn = false;
+        System.out.println("Fan is now off.");
+    }
+
+    public boolean areLightsOn() {
+        return lightsOn;
+    }
+
+    public boolean isFanOn() {
+        return fanOn;
+    }
+
+    public void displayStatus() {
+        System.out.println("Bedroom status:");
+        System.out.println("Lights are " + (lightsOn ? "on" : "off"));
+        System.out.println("Fan is " + (fanOn ? "on" : "off"));
+    }
+}
+
+public class HouseProgram {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        LivingRoom livingRoom = new LivingRoom();
+        Kitchen kitchen = new Kitchen();
+        Bedroom bedroom = new Bedroom();
+
+        while (true) {
+            System.out.println("Choose a room:");
+            System.out.println("1. Living Room");
+            System.out.println("2. Kitchen");
+            System.out.println("3. Bedroom");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+            int roomChoice = scanner.nextInt();
+
+            switch (roomChoice) {
+                case 1:
+                    manageLivingRoom(scanner, livingRoom);
+                    break;
+                case 2:
+                    manageKitchen(scanner, kitchen);
+                    break;
+                case 3:
+                    manageBedroom(scanner, bedroom);
+                    break;
+                case 4:
+                    System.out.println("Exiting program. Goodbye!");
+                    System.exit(0);
+                default:
+                    System.out.println("Invalid choice. Please enter a number from 1 to 4.");
+            }
+        }
+    }
+
+    private static void manageLivingRoom(Scanner scanner, LivingRoom livingRoom) {
+        while (true) {
+            System.out.println("Living Room options:");
+            System.out.println("1. Turn on TV");
+            System.out.println("2. Turn off TV");
+            System.out.println("3. Turn on Lights");
+            System.out.println("4. Turn off Lights");
+            System.out.println("5. Turn on AC");
+            System.out.println("6. Turn off AC");
+            System.out.println("7. Turn on Heater");
+            System.out.println("8. Turn off Heater");
+            System.out.println("9. Display Status");
+            System.out.println("10. Go Back");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    livingRoom.turnOnTV();
+                    break;
+                case 2:
+                    livingRoom.turnOffTV();
+                    break;
+                case 3:
+                    livingRoom.turnOnLights();
+                    break;
+                case 4:
+                    livingRoom.turnOffLights();
+                    break;
+                case 5:
+                    livingRoom.turnOnAC();
+                    break;
+                case 6:
+                    livingRoom.turnOffAC();
+                    break;
+                case 7:
+                    livingRoom.turnOnHeater();
+                    break;
+                case 8:
+                    livingRoom.turnOffHeater();
+                    break;
+                case 9:
+                    livingRoom.displayStatus();
+                    break;
+                case 10:
+                    return;
+                default:
+                    System.out.println("Invalid choice. Please enter a number from 1 to 10.");
+            }
+        }
+    }
+
+    private static void manageKitchen(Scanner scanner, Kitchen kitchen) {
+        while (true) {
+            System.out.println("Kitchen options:");
+            System.out.println("1. Turn on Stove");
+            System.out.println("2. Turn off Stove");
+            System.out.println("3. Turn on Lights");
+            System.out.println("4. Turn off Lights");
+            System.out.println("5. Display Status");
+            System.out.println("6. Cook");
+            System.out.println("7. Clean");
+            System.out.println("8. Go Back");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    kitchen.turnOnStove();
+                    break;
+                case 2:
+                    kitchen.turnOffStove();
+                    break;
+                case 3:
+                    kitchen.turnOnLights();
+                    break;
+                case 4:
+                    kitchen.turnOffLights();
+                    break;
+                case 5:
+                    kitchen.displayStatus();
+                    break;
+                case 6:
+                    kitchen.cook();
+                    break;
+                case 7:
+                    kitchen.clean();
+                    break;
+                case 8:
+                    return;
+                default:
+                    System.out.println("Invalid choice. Please enter a number from 1 to 8.");
+            }
+        }
+    }
+
+    private static void manageBedroom(Scanner scanner, Bedroom bedroom) {
+        while (true) {
+            System.out.println("Bedroom options:");
+            System.out.println("1. Turn on Lights");
+            System.out.println("2. Turn off Lights");
+            System.out.println("3. Turn on Fan");
+            System.out.println("4. Turn off Fan");
+            System.out.println("5. Display Status");
+            System.out.println("6. Go Back");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    bedroom.turnOnLights();
+                    break;
+                case 2:
+                    bedroom.turnOffLights();
+                    break;
+                case 3:
+                    bedroom.turnOnFan();
+                    break;
+                case 4:
+                    bedroom.turnOffFan();
+                    break;
+                case 5:
+                    bedroom.displayStatus();
+                    break;
+                case 6:
+                    return;
+                default:
+                    System.out.println("Invalid choice. Please enter a number from 1 to 6.");
+            }
+        }
+    }
+}
